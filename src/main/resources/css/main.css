@@ -1,0 +1,41 @@
+body { 
+    background-color: #2F657B;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.25em;    
+    background-image: url('../assets/body-background-tile.png');
+}
+
+.btn-primary {
+    color: white;
+    background-color: #F79424;    
+}
+
+h1 {    
+    font-size: 3.25em;    
+}
+
+.heading {    
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.logo-footer {
+    padding-top: 4em;
+}
+
+.answer-radio-group {
+    padding: 2em;
+}
+
+.question-prompt-text {
+    font-size: 1.25em;
+}
+
+.question-prompt-range-text {
+    font-size: 1em;
+}
+
+.question-answer-select {
+    width: 50%;
+}

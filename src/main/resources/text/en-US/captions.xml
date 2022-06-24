@@ -1,0 +1,18 @@
+<captions>
+    <caption id="main_title_text">The Happiness Test</caption>    
+    <caption id="subtitle_text">This questionnaire is based on the Subjective Happiness Scale, developed by Professor of Psychology Sonja Lyubomirsky.</caption>        
+    <caption id="logoURL">https://www.happybrainscience.com</caption>
+    <caption id="question_1">In general, I consider myself</caption>
+    <caption id="answer_1_min">Not a very happy person</caption>
+    <caption id="answer_1_max">A very happy person</caption>
+    <caption id="question_2">Compared to most of my peers, I consider myself</caption>
+    <caption id="answer_2_min">Less happy</caption>
+    <caption id="answer_2_max">More happy</caption>
+    <caption id="question_3">Some people are generally very happy. They enjoy life regardless of what is going on, getting the most out of everything. To what extent does that characterization describe you?</caption>
+    <caption id="answer_3_min">Not at all</caption>
+    <caption id="answer_3_max">A great deal</caption>
+    <caption id="question_4">Some people are generally not very happy. They never seem as happy as they might be. To what extent does this describe you?</caption>
+    <caption id="answer_4_min">A great deal (I'm NOT happy)</caption>
+    <caption id="answer_4_max">Not at all (I'm happy!)</caption>
+</captions>
+
