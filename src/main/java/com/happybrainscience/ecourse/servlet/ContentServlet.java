@@ -29,6 +29,8 @@ public class ContentServlet extends HttpServlet {
             return "text/javascript";
         } else if (requestURI.endsWith(".css")) {
             return "text/css";
+        } else if (requestURI.endsWith(".m3u8")) {
+            return "application/x-mpegURL";
         } else if (requestURI.endsWith(".json")) {
             return "application/json";
         } else if (requestURI.endsWith(".svg")) {
