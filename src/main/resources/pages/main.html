@@ -24,19 +24,49 @@
         <meta name="theme-color" content="#ffffff">
         <!-- end FAVICON -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Facebook open graph -->
+        <!--        <meta property="og:url" content="http://www.thebutterflynebula.com/" />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="The Butterfly Nebula" />
+                <meta property="og:description" content="Album by Jim Seville." />
+                <meta property="og:image" content="http://openheartstudios.s3-us-west-2.amazonaws.com/jim/transforms/large/SCALE_WIDTH/850/Butterfleyes.jpg"/> -->
+        <!-- Facebook open graph end -->
+        <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
+
         <link rel="stylesheet" href="css/main.css">
     </head>
 
     <body>   
         <div class="container-fluid" ng-app="ECourseApp" ng-controller="ECourseController">
             <div class="row heading">
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <h1>Happy Brain Science ECourse</h1>                    
                 </div>                    
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <img width="120px" src="assets/logo_happy_brain_science.svg" alt="Happy Brain Science Logo">
                 </div>                    
-            </div>
+            </div>            
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="video-container">
+                        <video
+                            id="the-full-album-720p"
+                            class="video-js vjs-16-9"
+                            controls
+                            preload="auto"
+                            poster="assets/flowers.png"
+                            data-setup="{}">
+                            <source src="video/intro_-_thrive_from_nine_to_five/720p/index.m3u8" type="application/x-mpegURL" />
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a
+                                web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                            </p>
+                        </video>
+                    </div>
+                </div>
+            </div>        
         </div>        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script><!-- comment -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    

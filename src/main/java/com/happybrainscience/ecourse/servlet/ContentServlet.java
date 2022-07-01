@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Level;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,35 +51,31 @@ public class ContentServlet extends HttpServlet {
     
     private static final String CONTEXT_PATH = "/ECourse/";
 
-    private InputStream getResourceStream(HttpServletRequest request, String name) {
-        // asset path means "development mode" for running locally
-        String assetPath = System.getProperty("com.happybrainscience.thehappinesstest.assetpath");
-        if(assetPath == null) {
-            String sourceName = name;
-            if(sourceName.startsWith(CONTEXT_PATH)) {
-                sourceName = sourceName.substring(CONTEXT_PATH.length());
-            }
-            String resourceName = RESOURCE_NAMESPACE + sourceName;
-            if(LOGGER.isTraceEnabled()) {
-                LOGGER.trace("get resource " + resourceName);
-            }
-            return request.getServletContext().getResourceAsStream(resourceName);
-        } else {
-            try {                
-                String sourceName = name;
-                if(sourceName.startsWith(CONTEXT_PATH)) {
-                    sourceName = sourceName.substring(CONTEXT_PATH.length());
-                }
-                String fileName = assetPath + File.separatorChar + sourceName;
-                if(LOGGER.isTraceEnabled()) {
-                    LOGGER.trace("get file " + fileName);
-                }
-                return new FileInputStream(fileName);
-            } catch(FileNotFoundException ex) {
-                return null;
-            }
+    private InputStream getResourceStream(HttpServletRequest request, String sourceName) {
+        if(sourceName.startsWith(CONTEXT_PATH)) {
+            sourceName = sourceName.substring(CONTEXT_PATH.length());
         }
+        String resourceName = RESOURCE_NAMESPACE + sourceName;
+        if(LOGGER.isTraceEnabled()) {
+            LOGGER.trace("get resource " + resourceName);
+        }
+        return request.getServletContext().getResourceAsStream(resourceName);
     }
+    
+    private static final String HOME_PATH = "/home/happybrainscience";
+    
+    private InputStream getVideoFile(HttpServletRequest request, String sourceName) {                
+        if(sourceName.startsWith(CONTEXT_PATH)) {
+            sourceName = sourceName.substring(CONTEXT_PATH.length());
+        }
+        File videoFile = new File(HOME_PATH + File.separatorChar + "videos" + sourceName);
+        LOGGER.debug("fetch video file " + videoFile.getAbsolutePath());
+        try {
+            return new FileInputStream(videoFile);
+        } catch (FileNotFoundException ex) {
+            return null;
+        }
+    }    
     
     private InputStream getResourceByRequest(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
@@ -95,6 +92,8 @@ public class ContentServlet extends HttpServlet {
             return getResourceStream(request, requestURI);
         } else if (requestURI.contains("/assets")) {
             return getResourceStream(request, requestURI);
+        } else if (requestURI.contains("/video")) {
+            return getVideoFile(request, requestURI);
         } else { 
             return null;
         }
