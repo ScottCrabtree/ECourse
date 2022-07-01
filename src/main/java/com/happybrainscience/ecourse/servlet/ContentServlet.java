@@ -70,7 +70,7 @@ public class ContentServlet extends HttpServlet {
         if(sourceName.startsWith(CONTEXT_PATH)) {
             sourceName = sourceName.substring(CONTEXT_PATH.length());
         }
-        File videoFile = new File(HOME_PATH + File.separatorChar + "videos" + sourceName);
+        File videoFile = new File(HOME_PATH + File.separatorChar + sourceName);
         LOGGER.debug("fetch video file " + videoFile.getAbsolutePath());
         try {
             return new FileInputStream(videoFile);
