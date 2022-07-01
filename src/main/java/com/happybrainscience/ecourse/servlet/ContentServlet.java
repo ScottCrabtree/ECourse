@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.logging.Level;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +28,11 @@ public class ContentServlet extends HttpServlet {
             return "text/javascript";
         } else if (requestURI.endsWith(".css")) {
             return "text/css";
+        // .ts = video/mp2t
         } else if (requestURI.endsWith(".m3u8")) {
-            return "application/x-mpegURL";
+            return "application/x-mpegURL";        
+        } else if (requestURI.endsWith(".ts")) {
+            return "video/mp2t";        
         } else if (requestURI.endsWith(".json")) {
             return "application/json";
         } else if (requestURI.endsWith(".svg")) {
