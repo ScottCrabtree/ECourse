@@ -10,13 +10,13 @@ angular.module("ECourseApp").controller('ECourseController', function ($scope, $
         userLocale = navigator.language;
         console.log('detected user preferred locale in browser ' + userLocale);
     }
-//    $http({
-//        method: 'GET',
-//        url: 'resources/ecourse/captions'
-//    }).then(function (response) {
-//        $scope.captions = response.data;
-//        console.log('captions loaded');
-//    });
+    $http({
+        method: 'GET',
+        url: 'resources/ecourse/captions'
+    }).then(function (response) {
+        $scope.captions = response.data;
+        console.log('captions loaded');
+    });
 
     $scope.userAnswers = [];
     for (let i = 0; i < 4; i++) {

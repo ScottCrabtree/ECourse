@@ -1,18 +1,15 @@
 <captions>
-    <caption id="main_title_text">The Happiness Test</caption>    
-    <caption id="subtitle_text">This questionnaire is based on the Subjective Happiness Scale, developed by Professor of Psychology Sonja Lyubomirsky.</caption>        
+    <caption id="course_title">Thrive From 9-5</caption>    
+    <caption id="course_subtitle_text">Online Course</caption>        
     <caption id="logoURL">https://www.happybrainscience.com</caption>
-    <caption id="question_1">In general, I consider myself</caption>
-    <caption id="answer_1_min">Not a very happy person</caption>
-    <caption id="answer_1_max">A very happy person</caption>
-    <caption id="question_2">Compared to most of my peers, I consider myself</caption>
-    <caption id="answer_2_min">Less happy</caption>
-    <caption id="answer_2_max">More happy</caption>
-    <caption id="question_3">Some people are generally very happy. They enjoy life regardless of what is going on, getting the most out of everything. To what extent does that characterization describe you?</caption>
-    <caption id="answer_3_min">Not at all</caption>
-    <caption id="answer_3_max">A great deal</caption>
-    <caption id="question_4">Some people are generally not very happy. They never seem as happy as they might be. To what extent does this describe you?</caption>
-    <caption id="answer_4_min">A great deal (I'm NOT happy)</caption>
-    <caption id="answer_4_max">Not at all (I'm happy!)</caption>
+    <caption id="course_description_text">This 7-part course helps teach you how to make positive changes in your daily actions. You’ll learn how we often think about happiness in the wrong ways and how to change those beliefs. You’ll be happier, more productive and less stressed. This is the same program, using brain science and positive psychology, that Happy Brain Science has been teaching live for years to thousands of employees in the live workshop The Science of Being Happy and Productive at Work.</caption>
+    <caption id="lesson_text_1">Lesson 1 focuses on the ‘why’ of happiness at work, and how happiness boosts productivity, creativity, and more.</caption>
+    <caption id="lesson_text_2">Lesson 2 teaches the what, why, and how of happiness at work, and how you can start choosing more happiness through your intentional activities at work.</caption>
+    <caption id="lesson_text_3">Lesson 3 identifies how stress impacts brains and productivity, with tools to minimize and reframe stress.</caption>
+    <caption id="lesson_text_4">Lesson 4 teaches four strategies for decreasing negativity, and why what sounds cheesy and corny about positive attitude really works.</caption>
+    <caption id="lesson_text_5">Lesson 5 outlines how and why progress towards meaningful goals is essential to happiness and productivity, and how to have more effective goals at work.</caption>
+    <caption id="lesson_text_6">Lesson 6 teaches strategies for overcoming distractions, minimizing multi-tasking, and increasing focus in the office or workplace.</caption>
+    <caption id="lesson_text_7">Lesson 7 teaches research-based strategies to build relationships and increase trust in your workplace so you’re getting the most from your brain and your coworkers.</caption>
+    <caption id="lesson_text_8">This bonus lesson features a special video from Scott Crabtree, teaching you how to create a brain-science-based action plan to ensure your success.</caption>
 </captions>
 
