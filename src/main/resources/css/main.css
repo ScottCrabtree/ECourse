@@ -43,3 +43,7 @@ h1 {
 .video-lesson-image {
     width: 100%;
 }
+
+.lesson-table-row {
+    padding-bottom: 1em;
+}
