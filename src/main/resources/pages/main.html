@@ -41,7 +41,7 @@
         <div class="container-fluid" ng-app="ECourseApp" ng-controller="ECourseController">
             <div class="row heading">
                 <div class="col-md-9">
-                    <h1>{{captions['course_description_text']}}</h1>                    
+                    <h1>{{captions['course_title']}}</h1>                    
                     <h2>{{captions['course_subtitle_text']}}</h2>
                 </div>                    
                 <div class="col-md-3">
@@ -50,84 +50,17 @@
             </div>            
             <div class="row">
                 <div class="col-md-12">
-                    <p>This 7-part course helps teach you how to make positive changes in your daily actions. You’ll learn how we often think about happiness in the wrong ways and how to change those beliefs. You’ll be happier, more productive and less stressed. This is the same program, using brain science and positive psychology, that Happy Brain Science has been teaching live for years to thousands of employees in the live workshop The Science of Being Happy and Productive at Work.</p>
+                    <p>{{captions['course_description_text']}}</p>
                 </div>
             </div>           
-            <div class="row">
+            <div class="row" ng-repeat="lesson in [1,2,3,4,5,6,7,8]">
                 <div class="col-md-4">
-                    <a href="lesson/1">
-                        <img class="video-lesson-image" src="assets/poster_lesson_1.png" alt="lesson one video link">
+                    <a href="lesson/{{lesson}}">
+                        <img class="video-lesson-image" src="assets/poster_lesson_{{lesson}}.png" alt="lesson one video link">
                     </a>
                 </div>
                 <div class="col-md-8">
-                    <p>Lesson 1 focuses on the ‘why’ of happiness at work, and how happiness boosts productivity, creativity, and more.</p>
-                </div>                
-            </div>        
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="lesson/2">
-                        <img class="video-lesson-image" src="assets/poster_lesson_2.png" alt="lesson one video link">
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <p>Lesson 2 teaches the what, why, and how of happiness at work, and how you can start choosing more happiness through your intentional activities at work.</p>
-                </div>                
-            </div>        
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="lesson/3">
-                        <img class="video-lesson-image" src="assets/poster_lesson_3.png" alt="lesson one video link">
-                    </a>
-                </div>
-                <div class="col-md-8">                    
-                    <p>Lesson 3 identifies how stress impacts brains and productivity, with tools to minimize and reframe stress.</p>                    
-                </div>                
-            </div>        
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="video-lesson-image" src="assets/poster_lesson_1.png" alt="lesson one video link">
-                </div>
-                <div class="col-md-8">
-                    <p>Lesson 1 focuses on the ‘why’ of happiness at work, and how happiness boosts productivity, creativity, and more.</p>
-                </div>                
-            </div>        
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="video-lesson-image" src="assets/poster_lesson_1.png" alt="lesson one video link">
-                </div>
-                <div class="col-md-8">
-                    <p>Lesson 1 focuses on the ‘why’ of happiness at work, and how happiness boosts productivity, creativity, and more.</p>
-                </div>                
-            </div>        
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="video-lesson-image" src="assets/poster_lesson_1.png" alt="lesson one video link">
-                </div>
-                <div class="col-md-8">
-                    <p>Lesson 1 focuses on the ‘why’ of happiness at work, and how happiness boosts productivity, creativity, and more.</p>
-                </div>                
-            </div>        
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="video-lesson-image" src="assets/poster_lesson_1.png" alt="lesson one video link">
-                </div>
-                <div class="col-md-8">
-                    <p>Lesson 1 focuses on the ‘why’ of happiness at work, and how happiness boosts productivity, creativity, and more.</p>
-                </div>                
-            </div>        
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="video-lesson-image" src="assets/poster_lesson_1.png" alt="lesson one video link">
-                </div>
-                <div class="col-md-8">
-                    <p>Lesson 1 focuses on the ‘why’ of happiness at work, and how happiness boosts productivity, creativity, and more.</p>
+                    <p>{{captions['lesson_text_' + lesson]}}</p>
                 </div>                
             </div>        
             <br>
