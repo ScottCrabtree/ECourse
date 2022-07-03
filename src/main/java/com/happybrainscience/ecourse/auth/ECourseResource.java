@@ -58,7 +58,7 @@ public class ECourseResource {
         Map<Integer, String> videoFilenames = new HashMap<>();
         int fileIndex = 1;
         for(String videoFilename : VIDEO_FILENAMES) {
-            videoFilenames.put(fileIndex, videoFilename);
+            videoFilenames.put(fileIndex++, videoFilename);
         }
         return videoFilenames;
     }    
