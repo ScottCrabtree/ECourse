@@ -4,10 +4,7 @@
     "description": "Happy Brain Science Thrive 9 to 5",
     "main": "webpack.config.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "webpack --watch --progress --colors --content-base src/main/js",
-        "start": "webpack-dev-server -d --content-base src/main/webapp",
-        "build": "webpack --progress --colors --content-base src/main/webapp"
+        "build": "webpack --progress --colors --content-base target/classes"
     },
     "repository": {
         "type": "git",
@@ -16,7 +13,7 @@
     "author": "Timothy Heider",
     "license": "ISC",
     "devDependencies": {
-        "babel-core": "6.7.7",
+        "babel-core": "6.26.3",
         "babel-loader": "6.2.4",
         "css-loader": "^0.23.1",
         "webpack": "1.13.0"

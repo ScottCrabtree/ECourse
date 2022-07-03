@@ -60,6 +60,7 @@ public class ContentServlet extends HttpServlet {
             sourceName = sourceName.substring(CONTEXT_PATH.length());
         }
         String resourceName = RESOURCE_NAMESPACE + sourceName;
+        LOGGER.debug("get resource " + resourceName);
         if(LOGGER.isTraceEnabled()) {
             LOGGER.trace("get resource " + resourceName);
         }

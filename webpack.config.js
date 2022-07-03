@@ -1,7 +1,7 @@
 var path = require('path');
 
 var SOURCE_JS_DIR = path.resolve(__dirname, 'src/main/webapp/app');
-var BUILD_DIR = path.resolve(__dirname, 'src/main/webapp');
+var BUILD_DIR = path.resolve(__dirname, 'target/classes');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/main') + '/js/app.js',
