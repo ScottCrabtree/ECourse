@@ -68,6 +68,7 @@ angular.module("ECourseApp").controller('ECourseLessonController', function ($sc
         url: 'resources/ecourse/videos'
     }).then(function (response) {
         $scope.videos = response.data;
+        $scope.videoURL = $scope.videos[$scope.lessonId];
     });
 
     $http({
