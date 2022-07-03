@@ -38,10 +38,11 @@
     </head>
 
     <body>   
-        <div class="container-fluid" ng-app="ECourseApp" ng-controller="ECourseController">
+        <div class="container-fluid" ng-app="ECourseApp">
             <div class="row heading">
                 <div class="col-md-9">
-                    <h1>Happy Brain Science ECourse</h1>                    
+                    <h1>{{captions['course_title']}}</h1>                    
+                    <h2>{{captions['course_subtitle_text']}}</h2>
                 </div>                    
                 <div class="col-md-3">
                     <img width="120px" src="assets/logo_happy_brain_science.svg" alt="Happy Brain Science Logo">
