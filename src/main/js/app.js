@@ -61,7 +61,13 @@ angular.module("ECourseApp").controller('ECourseLessonController', function ($sc
         url: 'resources/ecourse/captions'
     }).then(function (response) {
         $scope.captions = response.data;
-        console.log('captions loaded');
+    });
+
+    $http({
+        method: 'GET',
+        url: 'resources/ecourse/videos'
+    }).then(function (response) {
+        $scope.videos = response.data;
     });
 
     $http({

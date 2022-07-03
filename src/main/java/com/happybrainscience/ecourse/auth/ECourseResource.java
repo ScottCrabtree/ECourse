@@ -39,4 +39,21 @@ public class ECourseResource {
         }
         return captions;
     }    
+    
+    private static final String[] VIDEO_FILENAMES = {
+        
+    };
+
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/videos")
+    @GET
+    public Map<Integer, String> getVideofilenames() {
+        Map<Integer, String> videoFilenames = new HashMap<>();
+        int fileIndex = 1;
+        for(String videoFilename : VIDEO_FILENAMES) {
+            videoFilenames.put(fileIndex, videoFilename);
+        }
+        return videoFilenames;
+    }    
+
 }
