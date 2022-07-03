@@ -88,7 +88,7 @@ public class ContentServlet extends HttpServlet {
             LOGGER.trace("get resource by URI:" + requestURI);
         }
         if (requestURI.equals(CONTEXT_PATH)) {
-            return getResourceStream(request, "pages/main.html");
+            return getResourceStream(request, "pages/index.html");
         } else if (requestURI.contains("/css")) {
             return getResourceStream(request, requestURI);
         } else if (requestURI.contains("/pages")) {

@@ -1,72 +1,24 @@
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <title>HappyBrainScience: ECourse</title>
-        <meta charset="utf-8">    
-        <!-- FAVICON -->
-        <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-        <link rel="manifest" href="favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-        <!-- end FAVICON -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Facebook open graph -->
-        <!--        <meta property="og:url" content="http://www.thebutterflynebula.com/" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="The Butterfly Nebula" />
-                <meta property="og:description" content="Album by Jim Seville." />
-                <meta property="og:image" content="http://openheartstudios.s3-us-west-2.amazonaws.com/jim/transforms/large/SCALE_WIDTH/850/Butterfleyes.jpg"/> -->
-        <!-- Facebook open graph end -->
-        <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
-
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-
-    <body>   
-        <div class="container-fluid" ng-app="ECourseApp">
-            <div class="row heading">
-                <div class="col-md-9">
-                    <h1>{{captions['course_title']}}</h1>                    
-                    <h2>{{captions['course_subtitle_text']}}</h2>
-                </div>                    
-                <div class="col-md-3">
-                    <img width="120px" src="assets/logo_happy_brain_science.svg" alt="Happy Brain Science Logo">
-                </div>                    
-            </div>            
-            <div class="row">
-                <div class="col-md-12">
-                    <p>{{captions['course_description_text']}}</p>
-                </div>
-            </div>           
-            <div class="row lesson-table" ng-repeat="lesson in [1,2,3,4,5,6,7,8]">
-                <div class="col-md-4">
-                    <a href="lesson/{{lesson}}">
-                        <img class="video-lesson-image" src="assets/poster_lesson_{{lesson}}.png" alt="lesson one video link">
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <p>{{captions['lesson_text_' + lesson]}}</p>
-                </div>                    
-            </div>                    
-        </div>        
-        <script src="https://vjs.zencdn.net/7.10.2/video.js"></script>  
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script><!-- comment -->
-        <script src="bundle.js"></script>       
-    </body>
-
-</html>
+<div class="row heading">
+    <div class="col-md-9">
+        <h1>{{captions['course_title']}}</h1>                    
+        <h2>{{captions['course_subtitle_text']}}</h2>
+    </div>                    
+    <div class="col-md-3">
+        <img width="120px" src="assets/logo_happy_brain_science.svg" alt="Happy Brain Science Logo">
+    </div>                    
+</div>            
+<div class="row">
+    <div class="col-md-12">
+        <p>{{captions['course_description_text']}}</p>
+    </div>
+</div>           
+<div class="row lesson-table" ng-repeat="lesson in [1, 2, 3, 4, 5, 6, 7, 8]">
+    <div class="col-md-4">
+        <a href="lesson/{{lesson}}">
+            <img class="video-lesson-image" src="assets/poster_lesson_{{lesson}}.png" alt="lesson one video link">
+        </a>
+    </div>
+    <div class="col-md-8">
+        <p>{{captions['lesson_text_' + lesson]}}</p>
+    </div>                    
+</div>                    
