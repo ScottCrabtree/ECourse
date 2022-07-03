@@ -54,11 +54,12 @@ public class ECourseResource {
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/videos")
     @GET
-    public Map<Integer, String> getVideofilenames() {
-        Map<Integer, String> videoFilenames = new HashMap<>();
+    public Map<String, String> getVideofilenames() {
+        Map<String, String> videoFilenames = new HashMap<>();
         int fileIndex = 1;
         for(String videoFilename : VIDEO_FILENAMES) {
-            videoFilenames.put(fileIndex++, videoFilename);
+            videoFilenames.put(Integer.toString(fileIndex), videoFilename);
+            fileIndex++;
         }
         return videoFilenames;
     }    

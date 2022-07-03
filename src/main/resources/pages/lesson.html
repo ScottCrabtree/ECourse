@@ -16,9 +16,9 @@
                 class="video-js vjs-16-9"
                 controls
                 preload="auto"                            
-                poster="assets/poster_lesson_1.png"
+                poster="assets/poster_lesson_{{lessonId}}.png"
                 data-setup="{}">
-                <source src="videos/intro_-_thrive_from_nine_to_five/720p/index.m3u8" type="application/x-mpegURL" />
+                <source src="videos/{{videos[lessonId]}}/720p/index.m3u8" type="application/x-mpegURL" />
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a
                     web browser that
