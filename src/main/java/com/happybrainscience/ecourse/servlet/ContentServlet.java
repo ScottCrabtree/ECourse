@@ -53,7 +53,7 @@ public class ContentServlet extends HttpServlet {
 
     private static final String RESOURCE_NAMESPACE = "/WEB-INF/classes/";
     
-    private static final String CONTEXT_PATH = "/ECourse/";
+    private static final String CONTEXT_PATH = "/Thrive9to5/";
 
     private InputStream getResourceStream(HttpServletRequest request, String sourceName) {
         if(sourceName.startsWith(CONTEXT_PATH)) {
