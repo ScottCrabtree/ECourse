@@ -121,15 +121,8 @@ public class ContentServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
-        String requestURI = request.getRequestURI();
-        if(requestURI.equals("/")) {
-            response.sendRedirect("/host");
-            LOGGER.debug("redirecting to host...");
-            return;
-        }
-        if(LOGGER.isTraceEnabled()) {
-            LOGGER.trace("received request " + request.getRequestURI());
-        }
+        String requestURI = request.getRequestURI();        
+        LOGGER.debug("received request " + request.getRequestURI());        
         InputStream in = getResourceByRequest(request);
         String contentType = this.getContentTypeByRequest(request);
         if (contentType == null) {
