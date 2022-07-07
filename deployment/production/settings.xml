@@ -10,7 +10,7 @@
                 <wildfly.port>17004</wildfly.port>
                 <wildfly.username>admin</wildfly.username>
                 <wildfly.password>RKtNznq6snsE</wildfly.password>
-                <wildfly.deployment.filename>ECourse.war</wildfly.deployment.filename>                                
+                <wildfly.deployment.filename>Thrive9to5.war</wildfly.deployment.filename>                                
             </properties>
         </profile>
     </profiles>
