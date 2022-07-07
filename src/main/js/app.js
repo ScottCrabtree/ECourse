@@ -14,6 +14,10 @@ angular.module('ECourseApp').config(function ($routeProvider) {
                 templateUrl: 'pages/main.html',
                 controller: 'ECourseHomeController'
             })
+            .when('/login', {
+                templateUrl: 'pages/login.html',
+                controller: 'ECourseLoginController'
+            })
             .when('/lesson/:lessonId', {
                 templateUrl: 'pages/lesson.html',
                 controller: 'ECourseLessonController'

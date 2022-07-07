@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CH@W</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- FAVICON -->
+        <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <!-- end FAVICON -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">        
+        <link rel="stylesheet" href="css/login.css">                
+        <meta name="google-signin-client_id" content="886115731938-6la64nljk0av0bguht0vqpdnjt5n3hjc.apps.googleusercontent.com">        
+    </head>
+    <body ng-app="ChawApp" ng-controller="ChawUserController">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">                            
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img width="200" alt="logo" src="assets/HappyBrainScienceLogo.png" class="navbar-logo">
+                        </div>                     
+                    </div>            
+                </a>
+            </nav>
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>        
+            <script src="js/ChawUser.js"></script>
+            <script>
+                    var onGoogleSignIn;
+                    angular.module("ChawApp").controller('GoogleSignonController', function ($scope, $http, $rootScope) {
+                        console.log('google signon controller started');
+                        $scope.googleSignon = function(googleUser) {
+                            console.log('google onSignIn');
+                            var profile = googleUser.getBasicProfile();
+                            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                            console.log('Name: ' + profile.getName());
+                            console.log('Image URL: ' + profile.getImageUrl());
+                            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.            
+
+                            console.log('onSignIn called in controller');
+                            $scope.googleUser = googleUser;
+                            var idToken = googleUser.getAuthResponse().id_token;
+                            console.log('id token = ' + idToken);
+                            $http({
+                            method: 'POST',
+                                data: {
+                                    googleAuthToken: idToken
+                                },
+                                url: 'resources/user/oauthconnect'
+                            }).then(function (response) {
+                                if (response.data) {
+                                    console.log('Google login success');
+                                    let locationPath = window.location.href;
+                                    if (locationPath.indexOf('?') !== -1) {
+                                        locationPath = locationPath.substring(0, locationPath.indexOf('?'));
+                                    }
+                                    locationPath += ("?session_id=" + response.data.sessionId);
+                                    window.location.href = locationPath;
+                                } else {
+                                    console.log('connect failure');
+                                    }
+                                }, function () {
+                                    console.log('connect failure');
+                            });
+                        };
+                        onGoogleSignIn = $scope.googleSignon.bind(this);
+                    });
+            </script>              
+            
+            <div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="alert alert-danger" role="alert" ng-show="errorMessage">
+                                    {{errorMessage}}
+                                </div>
+                                <form autocomplete="on" class="form-horizontal" ng-submit="userSignon()">
+                                    <fieldset>
+
+                                        <!-- Form Name -->
+                                        <legend>Please sign in with email and password</legend>
+
+                                        <!-- Text input-->
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="emailAddressText">Email</label>
+                                            <div class="col-md-4">
+                                                <input id="emailAddressText" autocomplete="email" ng-model="emailAddress" name="emailAddressText" type="text" placeholder="email address" class="form-control input-md" required="">
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Text input-->
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="passwordText">Password</label>
+                                            <div class="col-md-4">
+                                                <input id="passwordText" autocomplete="password" ng-model="passwordText" name="passwordText" type="password" placeholder="password" class="form-control input-md" required="">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-4">
+                                                <input type="submit" id="signonButton" name="signonButton" class="btn btn-primary" value="Sign in">
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-controller="GoogleSignonController">
+
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-body">                                
+                                <fieldset>
+
+                                    <!-- Form Name -->
+                                    <legend>... or sign in with Google</legend>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        
+                                        <div id="google-button-signin2" onclick="return do_click_google_signin();"></div>
+                                        <script>
+                                          var google_sign_in = false; // assume
+
+                                          function do_click_google_signin() {
+                                            google_sign_in = true;
+                                          }
+                                            
+                                          function onSuccess(googleUser) {
+                                            if ( google_sign_in ) {
+                                                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+                                                onGoogleSignIn(googleUser);                                                
+                                            } else {
+                                                console.log('disconnect current Google user');
+                                                gapi.auth2.getAuthInstance().disconnect();
+                                            }
+                                          }
+                                          function onFailure(error) {
+                                            console.log(error);
+                                          }
+                                          function renderButton() {
+                                            gapi.signin2.render('google-button-signin2', {
+                                              'scope': 'profile email',
+                                              'width': 240,
+                                              'height': 50,
+                                              'longtitle': true,
+                                              'theme': 'light',
+                                              'onsuccess': onSuccess,
+                                              'onfailure': onFailure
+                                            });
+                                          }
+                                        </script>
+                                                                                                                                                
+                                    </div>
+
+
+                                </fieldset>                                
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>      
+            <br>
+            <div>version {{productVersion}}</div>
+        </div>                
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer>            
+        </script>
+    </body>
+</html>

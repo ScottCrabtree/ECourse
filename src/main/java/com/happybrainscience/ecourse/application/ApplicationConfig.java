@@ -4,6 +4,11 @@ import net.lilycode.core.configbundle.ConfigPropertyInt;
 import net.lilycode.core.configbundle.ConfigPropertyString;
 
 /**
+ * Google OAUTH secret
+ * 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
+ */
+
+/**
  *
  * @author timothyheider
  */
