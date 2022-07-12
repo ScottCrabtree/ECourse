@@ -63,6 +63,8 @@ angular.module("ECourseApp").controller('ECourseHomeController', function ($scop
     console.log('session token', sessionToken);
     if(!sessionToken) {
         window.location.href = '/#!/login';
+    } else {
+        document.getElementById("google-signon-block").style.display = 'none';
     }
     delete $scope.errorMessage;
     let userLocale = 'en-US';
@@ -94,6 +96,8 @@ angular.module("ECourseApp").controller('ECourseLessonController', function ($sc
     console.log('session token', sessionToken);
     if(!sessionToken) {
         window.location.href = '/#!/login';
+    } else {
+        document.getElementById("google-signon-block").style.display = 'none';
     }
     
     $scope.lessonId = $routeParams.lessonId;
