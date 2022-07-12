@@ -95,6 +95,8 @@ public class ContentServlet extends HttpServlet {
             return getResourceStream(request, requestURI);
         } else if (requestURI.contains("bundle.js")) {
             return getResourceStream(request, requestURI);
+        } else if (requestURI.contains("login.js")) {
+            return getResourceStream(request, requestURI);
         } else if (requestURI.contains("/favicon")) {
             return getResourceStream(request, requestURI);
         } else if (requestURI.contains("/js")) {
