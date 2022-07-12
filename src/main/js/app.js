@@ -28,8 +28,8 @@ angular.module('ECourseApp').config(function ($routeProvider) {
 var onGoogleSignIn;
 angular.module("ECourseApp").controller('GoogleSignonController', function ($scope, $http, $rootScope) {
     console.log('google signon controller started');
-//    $scope.googleSignon = function (googleUser) {
-//        console.log('google onSignIn');
+    $scope.googleSignon = function (response) {
+        console.log('google onSignIn', response);
 //        var profile = googleUser.getBasicProfile();
 //        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 //        console.log('Name: ' + profile.getName());
@@ -61,8 +61,8 @@ angular.module("ECourseApp").controller('GoogleSignonController', function ($sco
 //        }, function () {
 //            console.log('connect failure');
 //        });
-//    };
-//    onGoogleSignIn = $scope.googleSignon.bind(this);
+    };
+    onGoogleSignIn = $scope.googleSignon.bind(this);
 });
 
 
