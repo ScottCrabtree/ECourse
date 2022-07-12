@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="css/login.css">                
         <meta name="google-signin-client_id" content="886115731938-6la64nljk0av0bguht0vqpdnjt5n3hjc.apps.googleusercontent.com">        
     </head>
-    <body ng-app="ChawApp" ng-controller="ECourseApp">
+    <body ng-app="ECourseApp">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="#">                            
@@ -40,10 +40,9 @@
             </nav>
             
             <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>        
-            <script src="js/ChawUser.js"></script>
             <script>
                     var onGoogleSignIn;
-                    angular.module("ChawApp").controller('GoogleSignonController', function ($scope, $http, $rootScope) {
+                    angular.module("ECourseApp").controller('GoogleSignonController', function ($scope, $http, $rootScope) {
                         console.log('google signon controller started');
                         $scope.googleSignon = function(googleUser) {
                             console.log('google onSignIn');
