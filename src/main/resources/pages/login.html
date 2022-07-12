@@ -1,56 +1,58 @@
-<div>
-    <div class="row" ng-controller="GoogleSignonController">
+<div class="row heading">
+    <div class="col-md-8">
+        <img width="120px" src="assets/logo_happy_brain_science.svg" alt="Happy Brain Science Logo">
+    </div>                    
+</div>            
+<div class="row" ng-controller="GoogleSignonController">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-body">                                
+                <fieldset>
 
-        <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">                                
-                    <fieldset>
+                    <!-- Form Name -->
+                    <legend>Please sign in with Google</legend>
 
-                        <!-- Form Name -->
-                        <legend>Please sign in with Google</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
 
-                        <!-- Text input-->
-                        <div class="form-group">
+                        <div id="google-button-signin2" onclick="return do_click_google_signin();"></div>
+                        <script>
+                                    var google_sign_in = false; // assume
 
-                            <div id="google-button-signin2" onclick="return do_click_google_signin();"></div>
-                            <script>
-                                        var google_sign_in = false; // assume
+                                    function do_click_google_signin() {
+                                        google_sign_in = true;
+                                    }
 
-                                        function do_click_google_signin() {
-                                            google_sign_in = true;
+                                    function onSuccess(googleUser) {
+                                        if (google_sign_in) {
+                                            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+                                            onGoogleSignIn(googleUser);
+                                        } else {
+                                            console.log('disconnect current Google user');
+                                            gapi.auth2.getAuthInstance().disconnect();
                                         }
+                                    }
+                                    function onFailure(error) {
+                                        console.log(error);
+                                    }
+                                    function renderButton() {
+                                        gapi.signin2.render('google-button-signin2', {
+                                            'scope': 'profile email',
+                                            'width': 240,
+                                            'height': 50,
+                                            'longtitle': true,
+                                            'theme': 'light',
+                                            'onsuccess': onSuccess,
+                                            'onfailure': onFailure
+                                        });
+                                    }
+                        </script>
 
-                                        function onSuccess(googleUser) {
-                                            if (google_sign_in) {
-                                                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-                                                onGoogleSignIn(googleUser);
-                                            } else {
-                                                console.log('disconnect current Google user');
-                                                gapi.auth2.getAuthInstance().disconnect();
-                                            }
-                                        }
-                                        function onFailure(error) {
-                                            console.log(error);
-                                        }
-                                        function renderButton() {
-                                            gapi.signin2.render('google-button-signin2', {
-                                                'scope': 'profile email',
-                                                'width': 240,
-                                                'height': 50,
-                                                'longtitle': true,
-                                                'theme': 'light',
-                                                'onsuccess': onSuccess,
-                                                'onfailure': onFailure
-                                            });
-                                        }
-                            </script>
-
-                        </div>
+                    </div>
 
 
-                    </fieldset>                                
-                </div>
+                </fieldset>                                
             </div>
         </div>
-    </div><!-- </div> -->
+    </div>
 </div>
