@@ -1,0 +1,31 @@
+package com.happybrainscience.ecourse.auth;
+
+/**
+ *
+ * @author timothyheider
+ */
+public class PostCredentialResponse {
+    
+    private String sessionToken;
+
+    private String emailAddress;
+    
+    public String getSessionToken() {
+        return sessionToken;
+    }
+
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
+    }       
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    
+    
+}

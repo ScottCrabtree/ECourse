@@ -67,12 +67,18 @@ public class ECourseResource {
     private static final String GOOGLE_OAUTH_CLIENT_ID = "886115731938-6la64nljk0av0bguht0vqpdnjt5n3hjc.apps.googleusercontent.com";
     
     @Produces({MediaType.APPLICATION_JSON})
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/credential")
     @POST
-    public void postCredentials(@FormParam("credential") String credential, @FormParam("g_csrf_token") String token) {
+    public PostCredentialResponse postCredential(PostCredentialRequest request) {
         try {
-            LOGGER.debug("google auth credential " + credential + " token " + token);
+            if(!request.getClientId().equals(GOOGLE_OAUTH_CLIENT_ID)) {
+                LOGGER.error("client ID mismatch");
+                throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+            }
+            String credential = request.getCredential();
+            PostCredentialResponse response = new PostCredentialResponse();
+            LOGGER.debug("google auth credential " + credential);
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance())
                     .setAudience(Arrays.asList(GOOGLE_OAUTH_CLIENT_ID))
                     .build();
@@ -82,8 +88,10 @@ public class ECourseResource {
             } else {
                 if (verifier.verify(googleToken)) {
                     LOGGER.debug("token is valid " + googleToken.toString());
-                    String emailAddress = googleToken.getPayload().getEmail();
+                    String emailAddress = googleToken.getPayload().getEmail();                    
                     LOGGER.debug("resolved Google account " + emailAddress);
+                    response.setEmailAddress(emailAddress);
+                    return response;
                 } else {
                     LOGGER.error("invalid token");
                     throw new WebApplicationException(Response.Status.UNAUTHORIZED);

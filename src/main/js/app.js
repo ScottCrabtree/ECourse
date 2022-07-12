@@ -27,9 +27,16 @@ angular.module('ECourseApp').config(function ($routeProvider) {
 
 angular.module("ECourseApp").controller('GoogleSignonController', function ($scope, $http, $rootScope) {
     console.log('google signon controller started');
-    $scope.googleSignon = function (response) {
-        console.log('google onSignIn', response);        
-        window.location.href = '/';
+    $scope.googleSignon = function (credentials) {
+        console.log('google onSignIn', credentials);        
+        $http({
+            method: 'POST',
+            data: credentials,
+            url: 'resources/ecourse/credential'
+        }).then(function (response) {
+            console.log('posted google credentials', response);
+            window.location.href = '/';
+        });        
     };
     onGoogleSignIn = $scope.googleSignon.bind(this);
 });
