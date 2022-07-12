@@ -42,31 +42,38 @@
             <ng-view/>
         </div>        
 
-        <div id="google-signon-block" class="panel panel-default">
-            <div class="panel-body">                                
-                <fieldset>
+        <div id="google-signon-block" class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">                            
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img width="200" alt="logo" src="assets/HappyBrainScienceLogo.png" class="navbar-logo">
+                        </div>                     
+                    </div>            
+                </a>
+            </nav>            
+            <div class="panel panel-default">
+                <div class="panel-body">                                
+                    <fieldset>
+                        <legend>Please sign in with Google</legend>
 
-                    <!-- Form Name -->
-                    <legend>Please sign in with Google</legend>
-
-                    <div id="g_id_onload"
-                         data-client_id="886115731938-6la64nljk0av0bguht0vqpdnjt5n3hjc.apps.googleusercontent.com"
-                         data-login_uri="https://thrive9to5.happybrainscience.com/resources/ecourse/credential"
-                         data-auto_prompt="false">
-                    </div>
-                    <div class="g_id_signin"
-                         data-type="standard"
-                         data-size="large"
-                         data-theme="outline"
-                         data-text="sign_in_with"
-                         data-shape="rectangular"
-                         data-logo_alignment="left">
-                    </div>
-
-                </fieldset>                                
+                        <div id="g_id_onload"
+                             data-client_id="886115731938-6la64nljk0av0bguht0vqpdnjt5n3hjc.apps.googleusercontent.com"
+                             data-login_uri="https://thrive9to5.happybrainscience.com/resources/ecourse/credential"
+                             data-auto_prompt="false">
+                        </div>
+                        <div class="g_id_signin"
+                             data-type="standard"
+                             data-size="large"
+                             data-theme="outline"
+                             data-text="sign_in_with"
+                             data-shape="rectangular"
+                             data-logo_alignment="left">
+                        </div>
+                    </fieldset>                                
+                </div>
             </div>
         </div>
-
         <script src="https://vjs.zencdn.net/7.10.2/video.js"></script>  
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script><!-- comment -->
         <script src="js/login.js"></script>       
