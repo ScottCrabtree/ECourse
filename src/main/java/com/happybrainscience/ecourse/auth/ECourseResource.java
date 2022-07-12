@@ -76,7 +76,7 @@ public class ECourseResource {
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance())
                     .setAudience(Arrays.asList(GOOGLE_OAUTH_CLIENT_ID))
                     .build();
-            GoogleIdToken googleToken = verifier.verify(token);
+            GoogleIdToken googleToken = verifier.verify(credential);
             if (googleToken == null) {
                 throw new WebApplicationException(Response.Status.UNAUTHORIZED);
             } else {
