@@ -25,6 +25,11 @@ angular.module('ECourseApp').config(function ($routeProvider) {
             ;    
 });
 
+angular.module("ECourseApp").controller('ECourseLoginController', function ($scope, $http, $rootScope) {
+    
+    
+});
+
 angular.module("ECourseApp").controller('ECourseHomeController', function ($scope, $http, $rootScope) {
     console.log('started Happy Brain Science ECourse controller');
     delete $scope.errorMessage;
