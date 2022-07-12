@@ -16,7 +16,7 @@ angular.module('ECourseApp').config(function ($routeProvider) {
             })
             .when('/login', {
                 templateUrl: 'pages/login.html',
-                controller: 'ECourseLoginController'
+                controller: 'GoogleSignonController'
             })
             .when('/lesson/:lessonId', {
                 templateUrl: 'pages/lesson.html',
