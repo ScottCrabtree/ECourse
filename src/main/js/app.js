@@ -25,7 +25,7 @@ angular.module('ECourseApp').config(function ($routeProvider) {
             ;
 });
 
-angular.module("ECourseApp").controller('GoogleSignonController', function ($scope, $http, $rootScope) {
+angular.module("ECourseApp").controller('GoogleSignonController', function ($scope, $http, $rootScope, $cookies) {
     console.log('google signon controller started');
     $scope.googleSignon = function (credentials) {
         console.log('google onSignIn', credentials);        
@@ -34,7 +34,8 @@ angular.module("ECourseApp").controller('GoogleSignonController', function ($sco
             data: credentials,
             url: 'resources/ecourse/credential'
         }).then(function (response) {
-            console.log('posted google credentials', response);
+            console.log('posted google credentials OK', response);
+            $cookies.put('happybrainscience-thrive9to5', response.data.sessionId, {'path': '/'});
             window.location.href = '/';
         });        
     };

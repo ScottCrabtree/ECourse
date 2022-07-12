@@ -14,6 +14,7 @@ import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Level;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -88,9 +89,12 @@ public class ECourseResource {
             } else {
                 if (verifier.verify(googleToken)) {
                     LOGGER.debug("token is valid " + googleToken.toString());
+                    String name = (String) googleToken.getPayload().get("name");
                     String emailAddress = googleToken.getPayload().getEmail();                    
                     LOGGER.debug("resolved Google account " + emailAddress);
                     response.setEmailAddress(emailAddress);
+                    response.setName(name);
+                    response.setSessionToken(UUID.randomUUID().toString());
                     return response;
                 } else {
                     LOGGER.error("invalid token");
