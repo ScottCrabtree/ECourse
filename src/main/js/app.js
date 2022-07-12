@@ -56,8 +56,14 @@ angular.module("ECourseApp").controller('ECourseLoginController', function ($sco
 
 });
 
-angular.module("ECourseApp").controller('ECourseHomeController', function ($scope, $http, $rootScope) {
-    console.log('started Happy Brain Science ECourse controller');
+angular.module("ECourseApp").controller('ECourseHomeController', function ($scope, $http, $rootScope, $cookies) {
+    console.log('started Happy Brain Science ECourse home controller');
+    // no cookie? go to login
+    let sessionToken = $cookies.get('happybrainscience-thrive9to5');
+    console.log('session token', sessionToken);
+    if(!sessionToken) {
+        window.location.href = '/#!/login';
+    }
     delete $scope.errorMessage;
     let userLocale = 'en-US';
     if (navigator.language) {
@@ -82,7 +88,14 @@ angular.module("ECourseApp").controller('ECourseHomeController', function ($scop
 
 });
 
-angular.module("ECourseApp").controller('ECourseLessonController', function ($scope, $http, $rootScope, $routeParams) {
+angular.module("ECourseApp").controller('ECourseLessonController', function ($scope, $http, $rootScope, $routeParams, $cookies) {
+    
+    let sessionToken = $cookies.get('happybrainscience-thrive9to5');
+    console.log('session token', sessionToken);
+    if(!sessionToken) {
+        window.location.href = '/#!/login';
+    }
+    
     $scope.lessonId = $routeParams.lessonId;
     console.log('started Happy Brain Science ECourse lesson controller', $scope);
     delete $scope.errorMessage;
