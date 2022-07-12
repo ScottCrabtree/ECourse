@@ -25,47 +25,6 @@ angular.module('ECourseApp').config(function ($routeProvider) {
             ;
 });
 
-var onGoogleSignIn;
-angular.module("ECourseApp").controller('GoogleSignonController', function ($scope, $http, $rootScope) {
-    console.log('google signon controller started');
-    $scope.googleSignon = function (googleUser) {
-        console.log('google onSignIn');
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.            
-
-        console.log('onSignIn called in controller');
-        $scope.googleUser = googleUser;
-        var idToken = googleUser.getAuthResponse().id_token;
-        console.log('id token = ' + idToken);
-        $http({
-            method: 'POST',
-            data: {
-                googleAuthToken: idToken
-            },
-            url: 'resources/user/oauthconnect'
-        }).then(function (response) {
-            if (response.data) {
-                console.log('Google login success');
-                let locationPath = window.location.href;
-                if (locationPath.indexOf('?') !== -1) {
-                    locationPath = locationPath.substring(0, locationPath.indexOf('?'));
-                }
-                locationPath += ("?session_id=" + response.data.sessionId);
-                window.location.href = locationPath;
-            } else {
-                console.log('connect failure');
-            }
-        }, function () {
-            console.log('connect failure');
-        });
-    };
-    onGoogleSignIn = $scope.googleSignon.bind(this);
-});
-
-
 angular.module("ECourseApp").controller('ECourseLoginController', function ($scope, $http, $rootScope) {
 
     $http({
