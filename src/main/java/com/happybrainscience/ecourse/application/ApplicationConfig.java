@@ -14,14 +14,14 @@ import net.lilycode.core.configbundle.ConfigPropertyString;
  */
 public class ApplicationConfig {
 
-    public static ConfigPropertyString DB_HOST = new ConfigPropertyString("com.happybrainscience.db.host");
+    public static ConfigPropertyString DB_HOST = new ConfigPropertyString("com.happybrainscience.thrive9to5.db.host");
 
-    public static ConfigPropertyInt    DB_PORT = new ConfigPropertyInt("com.happybrainscience.db.port");
+    public static ConfigPropertyInt    DB_PORT = new ConfigPropertyInt("com.happybrainscience.thrive9to5.db.port");
 
-    public static ConfigPropertyString DB_DATABASE = new ConfigPropertyString("com.happybrainscience.db.database");
+    public static ConfigPropertyString DB_DATABASE = new ConfigPropertyString("com.happybrainscience.thrive9to5.db.database");
 
-    public static ConfigPropertyString DB_USERNAME = new ConfigPropertyString("com.happybrainscience.db.username");
+    public static ConfigPropertyString DB_USERNAME = new ConfigPropertyString("com.happybrainscience.thrive9to5.db.username");
 
-    public static ConfigPropertyString DB_PASSWORD = new ConfigPropertyString("com.happybrainscience.db.password");
+    public static ConfigPropertyString DB_PASSWORD = new ConfigPropertyString("com.happybrainscience.thrive9to5.db.password");
 
 }
