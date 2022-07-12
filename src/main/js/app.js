@@ -22,12 +22,19 @@ angular.module('ECourseApp').config(function ($routeProvider) {
                 templateUrl: 'pages/lesson.html',
                 controller: 'ECourseLessonController'
             })
-            ;    
+            ;
 });
 
 angular.module("ECourseApp").controller('ECourseLoginController', function ($scope, $http, $rootScope) {
-    
-    
+
+    $http({
+        method: 'GET',
+        url: 'resources/ecourse/version'
+    }).then(function (response) {
+        $scope.productVersion = response.data.version;
+        console.log('version ' + $scope.productVersion);
+    });
+
 });
 
 angular.module("ECourseApp").controller('ECourseHomeController', function ($scope, $http, $rootScope) {
@@ -58,7 +65,7 @@ angular.module("ECourseApp").controller('ECourseHomeController', function ($scop
 
 angular.module("ECourseApp").controller('ECourseLessonController', function ($scope, $http, $rootScope, $routeParams) {
     $scope.lessonId = $routeParams.lessonId;
-    console.log('started Happy Brain Science ECourse lesson controller',$scope);
+    console.log('started Happy Brain Science ECourse lesson controller', $scope);
     delete $scope.errorMessage;
     let userLocale = 'en-US';
     if (navigator.language) {
@@ -78,11 +85,11 @@ angular.module("ECourseApp").controller('ECourseLessonController', function ($sc
     }).then(function (response) {
         $scope.videos = response.data;
         $scope.videoURL = 'videos/' + $scope.videos[$scope.lessonId] + "/720p/index.m3u8";
-        console.log('video URL ',$scope.videoURL);
+        console.log('video URL ', $scope.videoURL);
         let player = videojs(document.getElementById('training-video-720p'));
         player.src({
-                src: $scope.videoURL
-            });
+            src: $scope.videoURL
+        });
         console.log('updated player src');
     });
 
