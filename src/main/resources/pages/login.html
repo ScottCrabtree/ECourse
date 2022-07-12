@@ -83,49 +83,6 @@
             </script>              
             
             <div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="alert alert-danger" role="alert" ng-show="errorMessage">
-                                    {{errorMessage}}
-                                </div>
-                                <form autocomplete="on" class="form-horizontal" ng-submit="userSignon()">
-                                    <fieldset>
-
-                                        <!-- Form Name -->
-                                        <legend>Please sign in with email and password</legend>
-
-                                        <!-- Text input-->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="emailAddressText">Email</label>
-                                            <div class="col-md-4">
-                                                <input id="emailAddressText" autocomplete="email" ng-model="emailAddress" name="emailAddressText" type="text" placeholder="email address" class="form-control input-md" required="">
-
-                                            </div>
-                                        </div>
-
-                                        <!-- Text input-->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="passwordText">Password</label>
-                                            <div class="col-md-4">
-                                                <input id="passwordText" autocomplete="password" ng-model="passwordText" name="passwordText" type="password" placeholder="password" class="form-control input-md" required="">
-
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-md-4">
-                                                <input type="submit" id="signonButton" name="signonButton" class="btn btn-primary" value="Sign in">
-                                            </div>
-                                        </div>
-
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row" ng-controller="GoogleSignonController">
 
                     <div class="col-md-8">
@@ -134,7 +91,7 @@
                                 <fieldset>
 
                                     <!-- Form Name -->
-                                    <legend>... or sign in with Google</legend>
+                                    <legend>Please sign in with Google</legend>
 
                                     <!-- Text input-->
                                     <div class="form-group">
