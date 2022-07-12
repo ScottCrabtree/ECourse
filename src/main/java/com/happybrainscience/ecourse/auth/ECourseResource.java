@@ -7,7 +7,10 @@ import com.happybrainscience.ecourse.application.ProductVersion;
 import com.happybrainscience.ecourse.application.TextResourceController;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
 
@@ -51,6 +54,14 @@ public class ECourseResource {
         "action_plan_-_thrive_from_nine_to_five"
     };
 
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Path("/credential")
+    @POST
+    public void postCredentials(@FormParam("credential") String credential, @FormParam("g_csrf_token") String token) {
+        LOGGER.debug("google auth credential " + credential + " token " + token);
+    }
+    
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/videos")
     @GET
