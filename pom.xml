@@ -111,7 +111,13 @@
             <artifactId>google-api-client</artifactId>
             <version>1.35.1</version>
             <type>jar</type>
-        </dependency>        
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>1.41.4</version>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
