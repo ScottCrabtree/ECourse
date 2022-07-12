@@ -35,7 +35,8 @@ angular.module("ECourseApp").controller('GoogleSignonController', function ($sco
             url: 'resources/ecourse/credential'
         }).then(function (response) {
             console.log('posted google credentials OK', response);
-            $cookies.put('happybrainscience-thrive9to5', response.data.sessionId, {'path': '/'});
+            let sessionToken = response.data.sessionToken;
+            $cookies.put('happybrainscience-thrive9to5', sessionToken, {'path': '/'});
             window.location.href = '/';
         });        
     };
