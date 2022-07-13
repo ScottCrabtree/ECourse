@@ -4,6 +4,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.happybrainscience.ecourse.application.ApplicationConfig;
 import com.happybrainscience.ecourse.application.CaptionTextResource;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,13 +16,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.logging.Level;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import net.lilycode.core.configbundle.ConfigException;
 import org.apache.log4j.Logger;
 import sendinblue.ApiClient;
 import sendinblue.ApiException;
@@ -69,17 +70,14 @@ public class ECourseResource {
         "lesson_7_prioritize_people",
         "action_plan_-_thrive_from_nine_to_five"
     };
-
-    private static final String GOOGLE_OAUTH_CLIENT_ID = "886115731938-6la64nljk0av0bguht0vqpdnjt5n3hjc.apps.googleusercontent.com";
-    
+        
     private static final long THRIVE_9TO5_LIST_ID = 13L;
     
-    private boolean contactInList(String emailAddress) throws IOException, ApiException {
+    private boolean contactInList(String emailAddress) throws IOException, ApiException, ConfigException {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setDebugging(true);
         // Configure API key authorization: api-key
         ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("api-key");
-        apiKey.setApiKey("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");
+        apiKey.setApiKey(ApplicationConfig.SENDINBLUE_APIKEY.value());
         ContactsApi contactsApi = new ContactsApi();
         GetExtendedContactDetails contact = contactsApi.getContactInfo(emailAddress);
         LOGGER.debug(contact);
@@ -101,7 +99,7 @@ public class ECourseResource {
     @POST
     public PostCredentialResponse postCredential(PostCredentialRequest request) {
         try {
-            if(!request.getClientId().equals(GOOGLE_OAUTH_CLIENT_ID)) {
+            if(!request.getClientId().equals(ApplicationConfig.GOOGLE_IDENTITY_ID.value())) {
                 LOGGER.error("client ID mismatch");
                 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
             }
@@ -109,7 +107,7 @@ public class ECourseResource {
             PostCredentialResponse response = new PostCredentialResponse();
             LOGGER.debug("google auth credential " + credential);
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance())
-                    .setAudience(Arrays.asList(GOOGLE_OAUTH_CLIENT_ID))
+                    .setAudience(Arrays.asList(ApplicationConfig.GOOGLE_IDENTITY_ID.value()))
                     .build();
             GoogleIdToken googleToken = verifier.verify(credential);
             if (googleToken == null) {
@@ -140,6 +138,9 @@ public class ECourseResource {
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         } catch (ApiException ex) {
             LOGGER.error("SendInBlue failure", ex);
+            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+        } catch (ConfigException ex) {
+            LOGGER.error("configuration exception", ex);
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         }        
     }
