@@ -59,8 +59,7 @@ public class ContentServlet extends HttpServlet {
         if(sourceName.startsWith(CONTEXT_PATH)) {
             sourceName = sourceName.substring(CONTEXT_PATH.length());
         }
-        String resourceName = RESOURCE_NAMESPACE + sourceName;
-        LOGGER.debug("get resource " + resourceName);
+        String resourceName = RESOURCE_NAMESPACE + sourceName;        
         if(LOGGER.isTraceEnabled()) {
             LOGGER.trace("get resource " + resourceName);
         }
@@ -69,7 +68,7 @@ public class ContentServlet extends HttpServlet {
     
     private static final String HOME_PATH = "/home/happybrainscience";
     
-    private InputStream getVideoFile(HttpServletRequest request, String sourceName) {                
+    private InputStream getVideoFile(String sourceName) {                
         if(sourceName.startsWith(CONTEXT_PATH)) {
             sourceName = sourceName.substring(CONTEXT_PATH.length());
         }
@@ -104,7 +103,7 @@ public class ContentServlet extends HttpServlet {
         } else if (requestURI.contains("/assets")) {
             return getResourceStream(request, requestURI);
         } else if (requestURI.contains("/video")) {
-            return getVideoFile(request, requestURI);
+            return getVideoFile(requestURI);
         } else { 
             return null;
         }
@@ -124,7 +123,9 @@ public class ContentServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
         String requestURI = request.getRequestURI();        
-        LOGGER.debug("received request " + request.getRequestURI());        
+        if(LOGGER.isTraceEnabled()) {
+            LOGGER.trace("received request " + request.getRequestURI());        
+        }
         InputStream in = getResourceByRequest(request);
         String contentType = this.getContentTypeByRequest(request);
         if (contentType == null) {
