@@ -17,13 +17,18 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
+import sendinblue.ApiClient;
+import sendinblue.ApiException;
+import sendinblue.Configuration;
+import sendinblue.auth.ApiKeyAuth;
+import sibApi.ContactsApi;
+import sibModel.GetExtendedContactDetails;
 
 /**
  *
@@ -67,6 +72,29 @@ public class ECourseResource {
 
     private static final String GOOGLE_OAUTH_CLIENT_ID = "886115731938-6la64nljk0av0bguht0vqpdnjt5n3hjc.apps.googleusercontent.com";
     
+    private static final long THRIVE_9TO5_LIST_ID = 13L;
+    
+    private boolean contactInList(String emailAddress) throws IOException, ApiException {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setDebugging(true);
+        // Configure API key authorization: api-key
+        ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("api-key");
+        apiKey.setApiKey("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");
+        ContactsApi contactsApi = new ContactsApi(defaultClient);
+        GetExtendedContactDetails contact = contactsApi.getContactInfo(emailAddress);
+        LOGGER.debug(contact);
+        if (contact != null) {
+            LOGGER.debug("found existing contact " + contact.getEmail());
+            if(contact.getListIds().contains(THRIVE_9TO5_LIST_ID)) {
+                LOGGER.debug("contact is in membership list");
+                return true;
+            }
+        }                
+        return false;        
+    }
+    
+    
+    
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/credential")
@@ -92,10 +120,16 @@ public class ECourseResource {
                     String name = (String) googleToken.getPayload().get("name");
                     String emailAddress = googleToken.getPayload().getEmail();                    
                     LOGGER.debug("resolved Google account " + emailAddress);
-                    response.setEmailAddress(emailAddress);
-                    response.setName(name);
-                    response.setSessionToken(UUID.randomUUID().toString());
-                    return response;
+                    // now we need to verify the contact is in the list on SendInBlue
+                    if(contactInList(emailAddress)) {                    
+                        response.setEmailAddress(emailAddress);
+                        response.setName(name);
+                        response.setSessionToken(UUID.randomUUID().toString());
+                        return response;
+                    } else {
+                        LOGGER.debug("contact is not a member:" + emailAddress);
+                        throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+                    }
                 } else {
                     LOGGER.error("invalid token");
                     throw new WebApplicationException(Response.Status.UNAUTHORIZED);
@@ -103,6 +137,9 @@ public class ECourseResource {
             }
         } catch (GeneralSecurityException | IOException ex) {
             LOGGER.error("Google auth failure", ex);
+            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+        } catch (ApiException ex) {
+            LOGGER.error("SendInBlue failure", ex);
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         }        
     }
