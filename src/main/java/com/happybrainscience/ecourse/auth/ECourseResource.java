@@ -79,7 +79,7 @@ public class ECourseResource {
         defaultClient.setDebugging(true);
         // Configure API key authorization: api-key
         ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("api-key");
-        apiKey.setApiKey("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");
+        apiKey.setApiKey("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");
         ContactsApi contactsApi = new ContactsApi();
         GetExtendedContactDetails contact = contactsApi.getContactInfo(emailAddress);
         LOGGER.debug(contact);
