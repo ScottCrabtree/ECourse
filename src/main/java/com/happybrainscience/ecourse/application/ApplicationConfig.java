@@ -24,8 +24,8 @@ public class ApplicationConfig {
 
     public static ConfigPropertyString DB_PASSWORD = new ConfigPropertyString("com.happybrainscience.thrive9to5.db.password");
     
-    public static ConfigPropertyString GOOGLE_IDENTITY_ID = new ConfigPropertyString("com.happybrainscience.thrive9to5.db.google_identity_id");
+    public static ConfigPropertyString GOOGLE_IDENTITY_ID = new ConfigPropertyString("com.happybrainscience.thrive9to5.google_identity_id");
     
-    public static ConfigPropertyString SENDINBLUE_APIKEY = new ConfigPropertyString("com.happybrainscience.thrive9to5.db.sendinblue_apikey");
+    public static ConfigPropertyString SENDINBLUE_APIKEY = new ConfigPropertyString("com.happybrainscience.thrive9to5.sendinblue_apikey");
 
 }
