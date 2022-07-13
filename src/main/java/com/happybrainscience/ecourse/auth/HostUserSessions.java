@@ -8,7 +8,9 @@ import com.happybrainscience.ecourse.model.UserSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
 import javax.servlet.ServletContext;
+import net.lilycode.core.configbundle.ConfigException;
 import net.lilycode.core.hibernate.HibernateSessions;
 import net.lilycode.core.hibernate.HibernateSessionsConfiguration;
 import net.lilycode.core.hibernate.MySQLInnoDbDialect;
@@ -26,21 +28,23 @@ public class HostUserSessions implements UserSessions {
     private static final Logger LOGGER = Logger.getLogger(HostUserSessions.class);
 
     public HostUserSessions(ServletContext sc) {
-        HibernateSessions mainModel = new HibernateSessions();        
-        HibernateSessionsConfiguration hibernateConfig = new HibernateSessionsConfiguration();
-        hibernateConfig.setDatabaseHostAddress(ApplicationConfig.DB_HOST.value());
-        hibernateConfig.setDatabasePort(ApplicationConfig.DB_PORT.value());
-        hibernateConfig.setUpdateSchema(true);
-        hibernateConfig.setDatabaseUsername(ApplicationConfig.DB_USERNAME.value());
-        hibernateConfig.setDatabasePassword(ApplicationConfig.DB_PASSWORD.value());
-        hibernateConfig.setDatabaseDialect(MySQLInnoDbDialect.class);
-        hibernateConfig.setAnnotatedClasses(ModelClasses.getClasses());
-        hibernateConfig.setDatabaseName(ApplicationConfig.DB_DATABASE.value());
         try {
+            HibernateSessions mainModel = new HibernateSessions();        
+            HibernateSessionsConfiguration hibernateConfig = new HibernateSessionsConfiguration();
+            hibernateConfig.setDatabaseHostAddress(ApplicationConfig.DB_HOST.value());
+            hibernateConfig.setDatabasePort(ApplicationConfig.DB_PORT.value());
+            hibernateConfig.setUpdateSchema(true);
+            hibernateConfig.setDatabaseUsername(ApplicationConfig.DB_USERNAME.value());
+            hibernateConfig.setDatabasePassword(ApplicationConfig.DB_PASSWORD.value());
+            hibernateConfig.setDatabaseDialect(MySQLInnoDbDialect.class);
+            hibernateConfig.setAnnotatedClasses(ModelClasses.getClasses());
+            hibernateConfig.setDatabaseName(ApplicationConfig.DB_DATABASE.value());
             mainModel.openSessionManager(hibernateConfig);            
             Models.MAIN = Models.add("main", mainModel);
         } catch (IOException ex) {
             throw new RuntimeException("Hibernate initialization exception", ex);
+        } catch (ConfigException ex) {
+            throw new RuntimeException("Hibernate configuration exception", ex);
         }                
     }
 
