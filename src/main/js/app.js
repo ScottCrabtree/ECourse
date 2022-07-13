@@ -29,7 +29,7 @@ angular.module("ECourseApp").controller('GoogleSignonController', function ($sco
     console.log('google signon controller started');
     let sessionToken = $cookies.get('happybrainscience-thrive9to5');
     if(sessionToken) {
-        $cookies.delete('happybrainscience-thrive9to5');
+        $cookies.remove('happybrainscience-thrive9to5');
     }
     $scope.googleSignon = function (credentials) {
         console.log('google onSignIn', credentials);        
