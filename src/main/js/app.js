@@ -27,6 +27,10 @@ angular.module('ECourseApp').config(function ($routeProvider) {
 
 angular.module("ECourseApp").controller('GoogleSignonController', function ($scope, $http, $rootScope, $cookies) {
     console.log('google signon controller started');
+    let sessionToken = $cookies.get('happybrainscience-thrive9to5');
+    if(sessionToken) {
+        $cookies.delete('happybrainscience-thrive9to5');
+    }
     $scope.googleSignon = function (credentials) {
         console.log('google onSignIn', credentials);        
         $http({
