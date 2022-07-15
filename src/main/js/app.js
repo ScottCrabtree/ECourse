@@ -48,10 +48,10 @@ angular.module("ECourseApp").controller('GoogleSignonController', function ($sco
                 $cookies.put('happybrainscience-thrive9to5', sessionToken, {'path': '/'});
                 window.location.href = '/';
             } else {
-                window.location.href = '/unauthorized';
+                window.location.href = '#!/unauthorized';
             }
         }, function(errorResponse) {
-            window.location.href = '/unauthorized';
+            window.location.href = '#!/unauthorized';
         });        
     };
     onGoogleSignIn = $scope.googleSignon.bind(this);
@@ -87,6 +87,8 @@ angular.module("ECourseApp").controller('ECourseUnauthorizedController', functio
         $scope.captions = response.data;
         console.log('captions loaded');
     });
+    
+    document.getElementById("google-signon-block").style.display = 'none';
     
 
 });
