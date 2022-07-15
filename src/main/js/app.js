@@ -18,6 +18,10 @@ angular.module('ECourseApp').config(function ($routeProvider) {
                 templateUrl: 'pages/login.html',
                 controller: 'GoogleSignonController'
             })
+            .when('/unauthorized', {
+                templateUrl: 'pages/unauthorized.html',
+                controller: 'ECourseUnauthorizedController'
+            })
             .when('/lesson/:lessonId', {
                 templateUrl: 'pages/lesson.html',
                 controller: 'ECourseLessonController'
@@ -37,11 +41,17 @@ angular.module("ECourseApp").controller('GoogleSignonController', function ($sco
             method: 'POST',
             data: credentials,
             url: 'resources/ecourse/credential'
-        }).then(function (response) {
+        }).then(function (response) {            
             console.log('posted google credentials OK', response);
             let sessionToken = response.data.sessionToken;
-            $cookies.put('happybrainscience-thrive9to5', sessionToken, {'path': '/'});
-            window.location.href = '/';
+            if(sessionToken) {
+                $cookies.put('happybrainscience-thrive9to5', sessionToken, {'path': '/'});
+                window.location.href = '/';
+            } else {
+                window.location.href = '/unauthorized';
+            }
+        }, function(errorResponse) {
+            window.location.href = '/unauthorized';
         });        
     };
     onGoogleSignIn = $scope.googleSignon.bind(this);
@@ -57,6 +67,27 @@ angular.module("ECourseApp").controller('ECourseLoginController', function ($sco
         $scope.productVersion = response.data.version;
         console.log('version ' + $scope.productVersion);
     });
+
+});
+
+angular.module("ECourseApp").controller('ECourseUnauthorizedController', function ($scope, $http, $rootScope) {
+
+    $http({
+        method: 'GET',
+        url: 'resources/ecourse/version'
+    }).then(function (response) {
+        $scope.productVersion = response.data.version;
+        console.log('version ' + $scope.productVersion);
+    });
+    
+    $http({
+        method: 'GET',
+        url: 'resources/ecourse/captions'
+    }).then(function (response) {
+        $scope.captions = response.data;
+        console.log('captions loaded');
+    });
+    
 
 });
 

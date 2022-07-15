@@ -1,0 +1,30 @@
+<div class="row heading">
+    <div class="col-md-9">
+        <h1>{{captions['course_title']}}</h1>                    
+        <h2>{{captions['course_subtitle_text']}}</h2>
+    </div>                    
+    <div class="col-md-3">
+        <img width="120px" src="assets/logo_happy_brain_science.svg" alt="Happy Brain Science Logo">
+    </div>                    
+</div>            
+<div class="row">
+    <div class="col-md-8">
+        <p>{{captions['lesson_text_' + lessonId]}}</p>
+        <div ng-show="videoURL" class="video-container">                        
+            <video
+                id="training-video-720p"
+                class="video-js vjs-16-9"
+                preload="none"
+                controls
+                poster="assets/poster_lesson_{{lessonId}}.png"
+                data-setup="{}">
+                <source src="videos/lesson_1_working_happiness/720p/index.m3u8" type="application/x-mpegURL" />
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+        </div>
+    </div>
+</div>        
